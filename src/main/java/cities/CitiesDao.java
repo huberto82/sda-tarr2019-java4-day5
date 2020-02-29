@@ -10,12 +10,11 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CitiesDao implements Dao<City> {
-    private final static String FILE_NAME = "c:\\temp\\cities500.txt";
     private List<City> cities;
 
-    public CitiesDao(){
+    public CitiesDao(String pathName){
         cities = new ArrayList<>();
-        Path path = Paths.get(FILE_NAME);
+        Path path = Paths.get(pathName);
         try {
             List<String> lines= Files.readAllLines(path);
             cities = lines.stream()
