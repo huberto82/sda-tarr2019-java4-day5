@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,6 +33,10 @@ public class CitiesDao implements Dao<City> {
                     .collect(Collectors.toList());
         } catch (IOException e) {
         }
+    }
+
+    public CitiesDao(){
+        cities = Collections.EMPTY_LIST;
     }
 
 

@@ -9,6 +9,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Window;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,6 +54,7 @@ public class CityPanelController {
         columnLongitude.setCellValueFactory(new PropertyValueFactory<>("longitude"));
         columnCountryCode.setCellValueFactory(new PropertyValueFactory<>("countryCode"));
         columnPopulation.setCellValueFactory(new PropertyValueFactory<>("population"));
+        cities = new CitiesDao();
     }
 
     public void loadFile(ActionEvent actionEvent) {
@@ -75,6 +77,9 @@ public class CityPanelController {
         boolean enable = enableFilterByCountryCodeCheckBox.isSelected();
         countryCodeCombo.setDisable(!enable);
         enableFilterByCountryCodeCheckBox.setText(enable ? "Wyłącz filtr" : "Włącz filtr");
+        if (!enable){
+            citiesView.setItems(FXCollections.observableArrayList(cities.findAll()));
+        }
 
     }
 
